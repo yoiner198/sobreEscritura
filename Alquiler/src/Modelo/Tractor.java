@@ -3,33 +3,28 @@ package Modelo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 
 public class Tractor extends Vehiculo{
     private double pDia;
-    private String fIDa;
-    //private SimpleDateFormat fFIda;
-    //private Date fechaIda;
-    
+    private String fIda;
+
     private String fVuelta;
-//    private SimpleDateFormat fFVuelta;
-//    private Date fechaVuelta;
 
     public Tractor() {
         this.pDia=70000; 
-        this.fIDa="2022-10-20";
-        this.fIDa="2022-10-25";
+        this.fIda="20/11/2022";
+        this.fVuelta="25/11/2022";
     }
 
-    public Tractor(double pDia, String fIDa, String fVuelta, String placa, boolean estado) {
+    public Tractor(double pDia, String fIda, String fVuelta, String placa, boolean estado) {
         super(placa, estado);
         this.pDia = pDia;
-        this.fIDa = fIDa;
-//        this.fFIda = fFIda;
-//        this.fechaIda = fechaIda;
+        this.fIda = fIda;
+
         this.fVuelta = fVuelta;
-//        this.fFVuelta = fFVuelta;
-//        this.fechaVuelta = fechaVuelta;
+
     }
 
     public double getpDia() {
@@ -41,11 +36,11 @@ public class Tractor extends Vehiculo{
     }
 
     public String getfIDa() {
-        return fIDa;
+        return fIda;
     }
 
-    public void setfIDa(String fIDa) {
-        this.fIDa = fIDa;
+    public void setfIDa(String fIda) {
+        this.fIda = fIda;
     }
     public String getfVuelta() {
         return fVuelta;
@@ -56,14 +51,15 @@ public class Tractor extends Vehiculo{
     }
 
     public double cDias() throws ParseException{
-        SimpleDateFormat fechai = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaida = fechai.parse(this.fIDa);
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
         
-        SimpleDateFormat fechav = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechavuelta = fechav.parse(this.fIDa);
-        int milisegundosPorDia = 86400000;
-
-        double dias = (fechaida.getTime()-fechavuelta.getTime())/milisegundosPorDia;
+        Date fechaida = fecha.parse(this.fIda);
+        Date fechavuelta = fecha.parse(this.fVuelta);
+        
+        long calc = fechavuelta.getTime()-fechaida.getTime();
+        TimeUnit unidad = TimeUnit.DAYS;
+        double dias = unidad.convert(calc, TimeUnit.MILLISECONDS);
+        
         return dias;
     }
     

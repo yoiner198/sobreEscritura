@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) throws ParseException {
         Autobus bus1 = new Autobus();
         
-        System.out.println("Precio por los kilometros recorridos: "+bus1.calcP());
+        System.out.println("Precio de la renta por los kilometros recorridos: "+bus1.calcP());
         
         Tractor tractor1 = new Tractor();
-        System.out.println("Precio por los dias "+tractor1.cDias()+" transcurridos: ");
+        System.out.println("Precio de la renta por los dias "+tractor1.cDias()+" transcurridos: "+tractor1.cPago());
 
     }
     
